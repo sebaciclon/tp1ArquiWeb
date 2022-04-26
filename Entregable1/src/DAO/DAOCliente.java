@@ -53,14 +53,13 @@ public class DAOCliente implements DAO<Cliente> {
 		conn = ConexionMySQL.conectar();
 		ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 		
-		String select = "SELECT c.*, SUM(p.valor * fp.cantidad) as Mejores_clientes "
-				+ "FROM cliente c JOIN factura f ON (c.idCliente = f.idCliente) JOIN factura_producto fp ON(f.idFactura = fp.idFactura) JOIN producto p ON (p.idProducto = fp.idProducto) "
-				+ "WHERE c.idCliente = f.idCliente " + "GROUP BY c.idCliente " + "ORDER BY `Mejores_clientes` DESC";
-		
-		/*String select = "SELECT f.*, SUM(p.valor * fp.cantidad) AS mejoresClientes" +
-				"FROM factura f NATURAL JOIN facturaProducto fp NATURAL JOIN producto p" +
-				"GROUP BY f.idCliente" +
-				"ORDER BY mejoresClientes DESC";*/
+		String select = "SELECT c.*, SUM(p.valor * fp.cantidad) as MejoresClientes " +
+				"FROM cliente c JOIN factura f ON (c.idCliente = f.idCliente) " +
+				"JOIN facturaproducto fp ON(f.idFactura = fp.idFactura) " +
+				"JOIN producto p ON (p.idProducto = fp.idProducto) " +
+				"WHERE c.idCliente = f.idCliente " + 
+				"GROUP BY c.idCliente " + 
+				"ORDER BY `MejoresClientes` DESC";
 		PreparedStatement ps = conn.prepareStatement(select);
 		ResultSet rs = ps.executeQuery();
 		while(rs.next()) {

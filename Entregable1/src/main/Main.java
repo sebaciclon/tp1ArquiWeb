@@ -23,16 +23,15 @@ public class Main {
 	private static DAOFacturaProducto daoFacturaProducto;
 	private static DAOProducto daoProducto;
 	
-	private static AbstractFactory fabricaMySQL = new ConexionMySQL();
+	private static AbstractFactory fabrica = new ConexionMySQL();
 	
 		
 	public static void main(String[] args) throws SQLException, FileNotFoundException, IOException  {
 		
-		//AbstractFactory mysqlFactory = AbstractFactory.getDAOFactory(AbstractFactory.MYSQL_DB);
-		daoCliente = fabricaMySQL.getDAOCliente();
-		daoFactura = fabricaMySQL.getDAOFactura();
-		daoFacturaProducto = fabricaMySQL.getDAOFacturaProducto();
-		daoProducto = fabricaMySQL.getDAOProducto();
+		daoCliente = fabrica.getDAOCliente();
+		daoFactura = fabrica.getDAOFactura();
+		daoFacturaProducto = fabrica.getDAOFacturaProducto();
+		daoProducto = fabrica.getDAOProducto();
 		
 		daoCliente.crearTabla();
 		daoFactura.crearTabla();
@@ -59,7 +58,7 @@ public class Main {
 		
 		
 		System.out.println("Lista de clientes que mas facturan: ");
-		//System.out.println(daoCliente.clientesMasFacturo());
+		System.out.println(daoCliente.clientesMasFacturo());
 		
 		System.out.println("Producto que mas recaudò: ");
 		System.out.println(daoProducto.productoMasRecaudo());
