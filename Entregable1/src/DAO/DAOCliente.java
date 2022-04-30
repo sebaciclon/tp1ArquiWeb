@@ -1,16 +1,18 @@
 package DAO;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-
 import org.apache.commons.csv.CSVParser;
 import org.apache.commons.csv.CSVRecord;
-
 import DAOFactory.ConexionMySQL;
 import modelo.Cliente;
+
+// FILMINAS 3 PAGINA 7
+// Estos serian el ConcreteProduct
 
 public class DAOCliente implements DAO<Cliente> {
 	

@@ -19,6 +19,9 @@ public class ConexionMySQL extends AbstractFactory{
 	private static final String USER = "root";
 	private static final String PASS = "";
 	
+	// FILMINAS 3 PAGINA 7 
+	// Este seria el ConcreteCreator
+	
 	public static Connection conectar() {
 		try {
 			Class.forName(DRIVER).getDeclaredConstructor().newInstance();
@@ -37,7 +40,8 @@ public class ConexionMySQL extends AbstractFactory{
 		}
 		return null;
 	}
-
+	
+	
 	@Override
 	public DAOCliente getDAOCliente() throws SQLException {
 		return new DAOCliente();

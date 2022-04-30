@@ -15,3 +15,6 @@ public abstract class AbstractFactory {
 	public abstract DAOProducto getDAOProducto() throws SQLException;
 	
 }
+
+// FILMINAS 3 PAGINA 7 
+// Este seria el creador
