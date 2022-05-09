@@ -21,8 +21,9 @@ public class Carrera {
 	private String nombre;
 	
 	// ver esta relacion si esta bien asi
-	@OneToMany(mappedBy = "carrera", fetch = FetchType.LAZY)	// Una carrera puede tener muchas inscripciones
+	@OneToMany(mappedBy = "carrera" /*, fetch = FetchType.LAZY*/)	// Una carrera puede tener muchas inscripciones - Por defecto es Lazy
 	private ArrayList<Carrera> carreras;
+	// private ArrayList<Inscripcion> inscripciones --> podría ser asì;
 
 	public Carrera(int idCarrera, String nombre, ArrayList<Carrera> carreras) {
 		super();
@@ -47,9 +48,14 @@ public class Carrera {
 		return carreras;
 	}
 
-	public void setCarreras(ArrayList<Carrera> carreras) {
+/* 	public ArrayList<Inscripcion> getCarreras() {
+		return carreras;
+	} */
+
+
+	/* public void setCarreras(ArrayList<Carrera> carreras) {
 		this.carreras = carreras;
-	}
+	} */ //Innecesario
 
 	public int getIdCarrera() {
 		return idCarrera;

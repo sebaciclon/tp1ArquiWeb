@@ -21,11 +21,12 @@ public class Inscripcion {
 	@Column(nullable=false)	
 	private boolean graduado;
 	
-	@ManyToOne		// Muchas inscripciones pertenecen a un alumno
+
+	@ManyToOne(fetch = FetchType.LAZY)		// Muchas inscripciones pertenecen a un alumno
 	@JoinColumn
 	private Estudiante estudiante;
 	
-	@ManyToOne		// Muchas inscripciones pertenecen a una carrera
+	@ManyToOne@ManyToOne(fetch = FetchType.LAZY)			// Muchas inscripciones pertenecen a una carrera
 	@JoinColumn
 	private Carrera carrera;
 
