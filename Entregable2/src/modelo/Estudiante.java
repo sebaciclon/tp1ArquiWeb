@@ -33,12 +33,12 @@ public class Estudiante {
 	private String ciudad;
 	
 	// ver esta relacion si esta bien asi
-	@OneToMany(mappedBy = "estudiante" /*, fetch = FetchType.LAZY*/)	// Un estudiante puede tener muchas inscripciones
-	private ArrayList<Carrera> carreras;	// Para manejar el mapeo many estamos obligados a usar algun tipo 
-	// private ArrayList<Inscripcion> carreras;										// de coleccion, como una lista por ejemplo
+	@OneToMany(mappedBy = "estudiante")	// Un estudiante puede tener muchas inscripciones
+	private ArrayList<Inscripcion> carreras;	// Para manejar el mapeo many estamos obligados a usar algun tipo 
+											// de coleccion, como una lista por ejemplo
 
 	public Estudiante(int lU, String nombres, String apellidos, int edad, String genero, String dni, String ciudad,
-			ArrayList<Carrera> carreras) {
+			ArrayList<Inscripcion> carreras) {
 		super();
 		LU = lU;
 		this.nombres = nombres;
@@ -110,18 +110,15 @@ public class Estudiante {
 		this.ciudad = ciudad;
 	}
 
-	public ArrayList<Carrera> getCarreras() {
+	 public ArrayList<Inscripcion> getCarreras() {
 		return carreras;
 	}
 
-	/* public ArrayList<Inscripcion> getCarreras() {
-		return carreras;
-	} */
-
-/* 	public void setCarreras(ArrayList<Carrera> carreras) {
-		this.carreras = carreras;
-	} */ //Innecesario
-	
-	
-
+	@Override
+	public String toString() {
+		return "Estudiante [LU=" + LU + ", nombres=" + nombres + ", apellidos=" + apellidos + ", edad=" + edad
+				+ ", genero=" + genero + ", dni=" + dni + ", ciudad=" + ciudad + ", carreras=" + carreras + "]";
+	} 
+	 
+	 
 }

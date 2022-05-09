@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -21,15 +20,14 @@ public class Carrera {
 	private String nombre;
 	
 	// ver esta relacion si esta bien asi
-	@OneToMany(mappedBy = "carrera" /*, fetch = FetchType.LAZY*/)	// Una carrera puede tener muchas inscripciones - Por defecto es Lazy
-	private ArrayList<Carrera> carreras;
-	// private ArrayList<Inscripcion> inscripciones --> podría ser asì;
-
-	public Carrera(int idCarrera, String nombre, ArrayList<Carrera> carreras) {
+	@OneToMany(mappedBy = "carrera")	// Una carrera puede tener muchas inscripciones - Por defecto es Lazy
+	private ArrayList<Inscripcion> inscripciones;
+	
+	public Carrera(int idCarrera, String nombre, ArrayList<Inscripcion> inscripciones) {
 		super();
 		this.idCarrera = idCarrera;
 		this.nombre = nombre;
-		this.carreras = carreras;
+		this.inscripciones = inscripciones;
 	}
 
 	public Carrera() {
@@ -44,21 +42,17 @@ public class Carrera {
 		this.nombre = nombre;
 	}
 
-	public ArrayList<Carrera> getCarreras() {
-		return carreras;
+	public ArrayList<Inscripcion> getInscripciones() {
+		return inscripciones;
 	}
-
-/* 	public ArrayList<Inscripcion> getCarreras() {
-		return carreras;
-	} */
-
-
-	/* public void setCarreras(ArrayList<Carrera> carreras) {
-		this.carreras = carreras;
-	} */ //Innecesario
 
 	public int getIdCarrera() {
 		return idCarrera;
+	}
+
+	@Override
+	public String toString() {
+		return "Carrera [idCarrera=" + idCarrera + ", nombre=" + nombre + ", inscripciones=" + inscripciones + "]";
 	}
 	
 	
