@@ -20,9 +20,40 @@ public class Carrera {
 	@Column(nullable=false)	
 	private String nombre;
 	
-	// domicilio no va!! ahi va el macheo con inscripto
-	@OneToMany(mappedBy = "domicilio", fetch = FetchType.LAZY)
-	private ArrayList<Estudiante> estudiantes;
+	// ver esta relacion si esta bien asi
+	@OneToMany(mappedBy = "carrera", fetch = FetchType.LAZY)	// Una carrera puede tener muchas inscripciones
+	private ArrayList<Carrera> carreras;
+
+	public Carrera(int idCarrera, String nombre, ArrayList<Carrera> carreras) {
+		super();
+		this.idCarrera = idCarrera;
+		this.nombre = nombre;
+		this.carreras = carreras;
+	}
+
+	public Carrera() {
+		super();
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public ArrayList<Carrera> getCarreras() {
+		return carreras;
+	}
+
+	public void setCarreras(ArrayList<Carrera> carreras) {
+		this.carreras = carreras;
+	}
+
+	public int getIdCarrera() {
+		return idCarrera;
+	}
 	
 	
 

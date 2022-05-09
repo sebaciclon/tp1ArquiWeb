@@ -32,9 +32,92 @@ public class Estudiante {
 	@Column(nullable=false)	
 	private String ciudad;
 	
-	// domicilio no va!! ahi va el macheo con inscripto
-	@OneToMany(mappedBy = "domicilio", fetch = FetchType.LAZY)	// Un estudiante puede tener muchas carreras
+	// ver esta relacion si esta bien asi
+	@OneToMany(mappedBy = "estudiante", fetch = FetchType.LAZY)	// Un estudiante puede tener muchas inscripciones
 	private ArrayList<Carrera> carreras;	// Para manejar el mapeo many estamos obligados a usar algun tipo 
 											// de coleccion, como una lista por ejemplo
+
+	public Estudiante(int lU, String nombres, String apellidos, int edad, String genero, String dni, String ciudad,
+			ArrayList<Carrera> carreras) {
+		super();
+		LU = lU;
+		this.nombres = nombres;
+		this.apellidos = apellidos;
+		this.edad = edad;
+		this.genero = genero;
+		this.dni = dni;
+		this.ciudad = ciudad;
+		this.carreras = carreras;
+	}
+	
+	public Estudiante() {
+		super();
+	}
+
+	public int getLU() {
+		return LU;
+	}
+
+	public void setLU(int lU) {
+		LU = lU;
+	}
+
+	public String getNombres() {
+		return nombres;
+	}
+
+	public void setNombres(String nombres) {
+		this.nombres = nombres;
+	}
+
+	public String getApellidos() {
+		return apellidos;
+	}
+
+	public void setApellidos(String apellidos) {
+		this.apellidos = apellidos;
+	}
+
+	public int getEdad() {
+		return edad;
+	}
+
+	public void setEdad(int edad) {
+		this.edad = edad;
+	}
+
+	public String getGenero() {
+		return genero;
+	}
+
+	public void setGenero(String genero) {
+		this.genero = genero;
+	}
+
+	public String getDni() {
+		return dni;
+	}
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
+
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(String ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	public ArrayList<Carrera> getCarreras() {
+		return carreras;
+	}
+
+	public void setCarreras(ArrayList<Carrera> carreras) {
+		this.carreras = carreras;
+	}
+	
+	
 
 }
