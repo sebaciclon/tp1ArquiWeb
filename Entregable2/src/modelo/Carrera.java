@@ -1,7 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
-
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,7 +21,7 @@ public class Carrera {
 	
 	// ver esta relacion si esta bien asi
 	@OneToMany(mappedBy = "carrera")	// Una carrera puede tener muchas inscripciones - Por defecto es Lazy
-	private ArrayList<Inscripcion> inscripciones;
+	private List<Inscripcion> inscripciones;
 	
 	public Carrera(int idCarrera, String nombre, ArrayList<Inscripcion> inscripciones) {
 		super();
@@ -42,7 +42,7 @@ public class Carrera {
 		this.nombre = nombre;
 	}
 
-	public ArrayList<Inscripcion> getInscripciones() {
+	public List<Inscripcion> getInscripciones() {
 		return inscripciones;
 	}
 

@@ -1,7 +1,7 @@
 package modelo;
 
 import java.util.ArrayList;
-
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -34,7 +34,7 @@ public class Estudiante {
 	
 	// ver esta relacion si esta bien asi
 	@OneToMany(mappedBy = "estudiante")	// Un estudiante puede tener muchas inscripciones
-	private ArrayList<Inscripcion> carreras;	// Para manejar el mapeo many estamos obligados a usar algun tipo 
+	private List<Inscripcion> carreras;	// Para manejar el mapeo many estamos obligados a usar algun tipo 
 											// de coleccion, como una lista por ejemplo
 
 	public Estudiante(int lU, String nombres, String apellidos, int edad, String genero, String dni, String ciudad) {
@@ -109,7 +109,7 @@ public class Estudiante {
 		this.ciudad = ciudad;
 	}
 
-	 public ArrayList<Inscripcion> getCarreras() {
+	 public List<Inscripcion> getCarreras() {
 		return carreras;
 	}
 
