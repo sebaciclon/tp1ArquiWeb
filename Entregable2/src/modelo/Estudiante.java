@@ -37,8 +37,7 @@ public class Estudiante {
 	private ArrayList<Inscripcion> carreras;	// Para manejar el mapeo many estamos obligados a usar algun tipo 
 											// de coleccion, como una lista por ejemplo
 
-	public Estudiante(int lU, String nombres, String apellidos, int edad, String genero, String dni, String ciudad,
-			ArrayList<Inscripcion> carreras) {
+	public Estudiante(int lU, String nombres, String apellidos, int edad, String genero, String dni, String ciudad) {
 		super();
 		LU = lU;
 		this.nombres = nombres;
@@ -47,7 +46,7 @@ public class Estudiante {
 		this.genero = genero;
 		this.dni = dni;
 		this.ciudad = ciudad;
-		this.carreras = carreras;
+		this.carreras = null;
 	}
 	
 	public Estudiante() {

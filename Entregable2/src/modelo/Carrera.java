@@ -27,7 +27,7 @@ public class Carrera {
 		super();
 		this.idCarrera = idCarrera;
 		this.nombre = nombre;
-		this.inscripciones = inscripciones;
+		this.inscripciones = null;
 	}
 
 	public Carrera() {
