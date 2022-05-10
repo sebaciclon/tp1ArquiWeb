@@ -15,8 +15,8 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		/*
-		JPARepositoryFactory factory = JPARepositoryFactory.getInstance();
+		
+		/*JPARepositoryFactory factory = JPARepositoryFactory.getInstance();
 		EstudianteRepository e = (EstudianteRepository) factory.createRepository("Estudiante");
 		CarreraRepository c = (CarreraRepository) factory.createRepository("Carrera");
 		InscripcionRepository i = (InscripcionRepository) factory.createRepository("Inscripcion");*/
@@ -26,8 +26,9 @@ public class Main {
 		em.getTransaction().begin();
 		
 		Estudiante e = new Estudiante(10, "Sebastian", "Esains", 41, "M", "27.830.954", "Rauch");
-		
+		Estudiante e1 = new Estudiante(20, "Leonardo", "Esains", 51, "M", "28.830.954", "Rauch");
 		em.persist(e);
+		em.persist(e1);
 		em.getTransaction().commit();
 		em.close();
 		emf.close();

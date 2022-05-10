@@ -15,6 +15,7 @@ public class EstudianteRepository implements JPARepository<Estudiante> {
 
 	@Override
 	public void save(Estudiante e) {
+		
 		if(em.find(Estudiante.class, e.getLU()) == null) {
 			em.persist(e);		// insert
 		}
@@ -22,6 +23,7 @@ public class EstudianteRepository implements JPARepository<Estudiante> {
 			// ver esto si va un refresh
 			em.flush();		// update
 		}
+		
 	}
 
 	
