@@ -24,23 +24,20 @@ import javax.persistence.OneToMany;
 
 public class Carrera {
 	public static final String BUSCAR_TODAS = "Carrera.buscarTodas";
-	public static final String BUSCAR_CON_INSCRIPTOS = "Carrera.carrerasConInscriptos";
+	public static final String BUSCAR_CON_INSCRIPTOS = "Carrera.buscarConInscriptos";
 	public static final String BUSCAR_INSCRIPTOS_DE_CARRERA_POR_FECHA = "Carrera.buscarInscriptosDeCarreraPorFecha";
 	public static final String BUSCAR_EGRESADOS_DE_CARRERA_POR_FECHA = "Carrera.buscarEgresadosDeCarreraPorFecha";
 	public static final String BUSCAR_FECHAS_INGRESO = "Carrera.buscarFechasIngreso";
 	public static final String BUSCAR_FECHAS_EGRESO = "Carrera.buscarFechasEgreso";
 	
 	@Id
-	//@GeneratedValue(strategy=GenerationType.AUTO)
 	private int idCarrera;
 	
 	@Column(nullable=false)	
 	private String nombre;
 	
-	// ver esta relacion si esta bien asi
-	@OneToMany(mappedBy = "carrera")	// Una carrera puede tener muchas inscripciones - Por defecto es Lazy
+	@OneToMany(mappedBy = "carrera")	
 	private List<Inscripcion> estudiantes;
-	
 	
 	public Carrera(int idCarrera, String nombre) {
 		super();

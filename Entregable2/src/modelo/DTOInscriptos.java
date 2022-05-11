@@ -4,13 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
-public class DTOEstudianteCarrera {
+public class DTOInscriptos {
 
 	private Carrera carrera;
 	private HashMap<Integer, List<Estudiante>> inscriptos;
 	private HashMap<Integer, List<Estudiante>> egresados;
 	
-	public DTOEstudianteCarrera(Carrera carrera, HashMap<Integer, List<Estudiante>> inscriptos,
+	public DTOInscriptos(Carrera carrera, HashMap<Integer, List<Estudiante>> inscriptos,
 			HashMap<Integer, List<Estudiante>> egresados) {
 		super();
 		this.carrera = carrera;

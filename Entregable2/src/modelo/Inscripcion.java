@@ -14,13 +14,11 @@ import javax.persistence.ManyToOne;
 public class Inscripcion implements Serializable{
 	
 	@Id
-	//private int LU;
-	@ManyToOne(fetch = FetchType.LAZY)		// Muchas inscripciones pertenecen a un alumno
+	@ManyToOne(fetch = FetchType.LAZY)		// Muchas inscripciones pertenecen a un estudiante
 	@JoinColumn
 	private Estudiante estudiante;
 	
 	@Id
-	//private int idCarrera;
 	@ManyToOne(fetch = FetchType.LAZY)			// Muchas inscripciones pertenecen a una carrera
 	@JoinColumn
 	private Carrera carrera;
@@ -46,27 +44,6 @@ public class Inscripcion implements Serializable{
 	public void setFecha_egreso(Timestamp fecha_egreso) {
 		this.fecha_egreso = fecha_egreso;
 	}
-	
-	/*@ManyToOne(fetch = FetchType.LAZY)		// Muchas inscripciones pertenecen a un alumno
-	@JoinColumn
-	private Estudiante estudiante;
-	
-	@ManyToOne(fetch = FetchType.LAZY)			// Muchas inscripciones pertenecen a una carrera
-	@JoinColumn
-	private Carrera carrera;*/
-
-	/*public Inscripcion(int lU, int idCarrera, int antiguedad, boolean graduado, Estudiante estudiante,
-			Carrera carrera) {
-		super();
-		LU = lU;
-		this.idCarrera = idCarrera;
-		this.antiguedad = antiguedad;
-		this.graduado = graduado;
-		this.estudiante = estudiante;
-		this.carrera = carrera;
-	}*/
-	
-	
 
 	public Inscripcion() {
 		super();
@@ -101,21 +78,4 @@ public class Inscripcion implements Serializable{
 		return "Inscripcion [estudiante=" + estudiante + ", carrera=" + carrera + ", fecha_ingreso=" + fecha_ingreso
 				+ ", fecha_egreso=" + fecha_egreso + "]";
 	}
-
-	/*public int getLU() {
-		return LU;
-	}
-
-	public int getIdCarrera() {
-		return idCarrera;
-	}
-
-	@Override
-	public String toString() {
-		return "Inscripcion [LU=" + LU + ", idCarrera=" + idCarrera + ", antiguedad=" + antiguedad + ", graduado="
-				+ graduado + ", estudiante=" + estudiante + ", carrera=" + carrera + "]";
-	}*/
-	
-	
-
 }
