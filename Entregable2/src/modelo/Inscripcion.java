@@ -1,6 +1,7 @@
 package modelo;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,27 +14,48 @@ import javax.persistence.ManyToOne;
 public class Inscripcion implements Serializable{
 	
 	@Id
-	private int LU;
+	//private int LU;
+	@ManyToOne(fetch = FetchType.LAZY)		// Muchas inscripciones pertenecen a un alumno
+	@JoinColumn
+	private Estudiante estudiante;
 	
 	@Id
-	private int idCarrera;
+	//private int idCarrera;
+	@ManyToOne(fetch = FetchType.LAZY)			// Muchas inscripciones pertenecen a una carrera
+	@JoinColumn
+	private Carrera carrera;
 	
-	@Column(nullable=false)	
-	private int antiguedad;
+	@Column
+	private Timestamp fecha_ingreso;
 	
-	@Column(nullable=false)	
-	private boolean graduado;
-	
+	@Column(nullable = true)
+	private Timestamp fecha_egreso;
 
-	@ManyToOne(fetch = FetchType.LAZY)		// Muchas inscripciones pertenecen a un alumno
+	public Timestamp getFecha_ingreso() {
+		return fecha_ingreso;
+	}
+
+	public void setFecha_ingreso(Timestamp fecha_ingreso) {
+		this.fecha_ingreso = fecha_ingreso;
+	}
+
+	public Timestamp getFecha_egreso() {
+		return fecha_egreso;
+	}
+
+	public void setFecha_egreso(Timestamp fecha_egreso) {
+		this.fecha_egreso = fecha_egreso;
+	}
+	
+	/*@ManyToOne(fetch = FetchType.LAZY)		// Muchas inscripciones pertenecen a un alumno
 	@JoinColumn
 	private Estudiante estudiante;
 	
 	@ManyToOne(fetch = FetchType.LAZY)			// Muchas inscripciones pertenecen a una carrera
 	@JoinColumn
-	private Carrera carrera;
+	private Carrera carrera;*/
 
-	public Inscripcion(int lU, int idCarrera, int antiguedad, boolean graduado, Estudiante estudiante,
+	/*public Inscripcion(int lU, int idCarrera, int antiguedad, boolean graduado, Estudiante estudiante,
 			Carrera carrera) {
 		super();
 		LU = lU;
@@ -42,26 +64,20 @@ public class Inscripcion implements Serializable{
 		this.graduado = graduado;
 		this.estudiante = estudiante;
 		this.carrera = carrera;
-	}
+	}*/
+	
+	
 
 	public Inscripcion() {
 		super();
 	}
 
-	public int getAntiguedad() {
-		return antiguedad;
-	}
-
-	public void setAntiguedad(int antiguedad) {
-		this.antiguedad = antiguedad;
-	}
-
-	public boolean isGraduado() {
-		return graduado;
-	}
-
-	public void setGraduado(boolean graduado) {
-		this.graduado = graduado;
+	public Inscripcion(Estudiante estudiante, Carrera carrera, Timestamp ingreso, Timestamp egreso) {
+		super();
+		this.estudiante = estudiante;
+		this.carrera = carrera;
+		this.fecha_ingreso = ingreso;
+		this.fecha_egreso = egreso;
 	}
 
 	public Estudiante getEstudiante() {
@@ -80,7 +96,13 @@ public class Inscripcion implements Serializable{
 		this.carrera = carrera;
 	}
 
-	public int getLU() {
+	@Override
+	public String toString() {
+		return "Inscripcion [estudiante=" + estudiante + ", carrera=" + carrera + ", fecha_ingreso=" + fecha_ingreso
+				+ ", fecha_egreso=" + fecha_egreso + "]";
+	}
+
+	/*public int getLU() {
 		return LU;
 	}
 
@@ -92,7 +114,7 @@ public class Inscripcion implements Serializable{
 	public String toString() {
 		return "Inscripcion [LU=" + LU + ", idCarrera=" + idCarrera + ", antiguedad=" + antiguedad + ", graduado="
 				+ graduado + ", estudiante=" + estudiante + ", carrera=" + carrera + "]";
-	}
+	}*/
 	
 	
 
