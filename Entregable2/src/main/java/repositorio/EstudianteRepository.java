@@ -2,9 +2,9 @@ package repositorio;
 
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.Persistence;
+import jakarta.persistence.TypedQuery;
 
 import interfaces.JPARepository;
 import jakarta.ws.rs.GET;
@@ -14,17 +14,12 @@ import jakarta.ws.rs.core.MediaType;
 import modelo.Carrera;
 import modelo.Estudiante;
 
-@Path("/estudiantes")
 public class EstudianteRepository implements JPARepository<Estudiante> {
 	
 	private static EntityManager em = null;
 		
 	public EstudianteRepository(EntityManager em) {
 		this.em = em;
-	}
-	
-	public EstudianteRepository() {
-		System.out.println("Pasé por acá");
 	}
 
 	@Override
@@ -37,8 +32,6 @@ public class EstudianteRepository implements JPARepository<Estudiante> {
 		}
 	}
 
-	@GET
-	@Produces(MediaType.APPLICATION_JSON)
 	public List<Estudiante> getAll() {
 		TypedQuery<Estudiante> tq = this.em.createNamedQuery(
 				Estudiante.ORDENAR_POR_APELLIDO, Estudiante.class);

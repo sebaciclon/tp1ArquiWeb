@@ -1,6 +1,6 @@
 package repositorio;
 
-import javax.persistence.EntityManager;
+import jakarta.persistence.EntityManager;
 import interfaces.JPARepository;
 import modelo.Inscripcion;
 

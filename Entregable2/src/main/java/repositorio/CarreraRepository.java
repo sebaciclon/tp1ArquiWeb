@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
 import interfaces.JPARepository;
 import modelo.Carrera;
