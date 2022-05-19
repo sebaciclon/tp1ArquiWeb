@@ -7,7 +7,7 @@ package main;
  * interfaces: contiene la interfaz que implementan los repositorios Carrera, Estudiante e Inscripcion
  * main: contiene el codigo en el que se instancian las clases
  * modelo: contiene las clases java mapeadas a sql   
- *  Repositorio: Contiene las clases del patrón repository
+ *  Repositorio: Contiene las clases del patrï¿½n repository
  *  
  */
 
@@ -40,7 +40,7 @@ public class Main {
 		em.getTransaction().begin();
 		Estudiante e = new Estudiante(10, "Sebastian", "Esains", 41, "M", "27.830.954", "Rauch");
 		Estudiante e1 = new Estudiante(20, "Leonardo", "Esains", 51, "M", "28.830.954", "Rauch");
-		Estudiante e2 = new Estudiante(30, "Loli", "Peña", 61, "F", "29.830.954", "Rauch");
+		Estudiante e2 = new Estudiante(30, "Loli", "Peï¿½a", 61, "F", "29.830.954", "Rauch");
 		Estudiante e3 = new Estudiante(40, "Judit", "Meaca", 71, "F", "30.830.954", "Rauch");
 		Estudiante e4 = new Estudiante(50, "Mauricio", "Oruezabal", 81, "M", "31.830.954", "Tandil");
 		Estudiante e5 = new Estudiante(11, "Sebastian", "Lopez", 41, "M", "27.840.954", "Tandil");
@@ -100,7 +100,7 @@ public class Main {
 		ir.save(i3);
 		em.getTransaction().commit();
 		
-		// c) recuperar todos los estudiantes, y especificar algún criterio de ordenamiento simple.
+		// c) recuperar todos los estudiantes, y especificar algï¿½n criterio de ordenamiento simple.
 		// El criterio de ordenamiento es por apellido
 		
 		em.getTransaction().begin();
@@ -109,7 +109,7 @@ public class Main {
 		System.out.println(" ");
 		em.getTransaction().commit();
 		
-		// d) recuperar un estudiante, en base a su número de libreta universitaria
+		// d) recuperar un estudiante, en base a su nï¿½mero de libreta universitaria
 		
 		em.getTransaction().begin();
 		System.out.println("Estudiante cuyo numero de libreta es 40");
@@ -117,7 +117,7 @@ public class Main {
 		System.out.println(" ");
 		em.getTransaction().commit();
 		
-		// e) recuperar todos los estudiantes, en base a su género.
+		// e) recuperar todos los estudiantes, en base a su gï¿½nero.
 		
 		em.getTransaction().begin();
 		System.out.println("Estudiantes cuyo genero es masculino");
@@ -139,9 +139,9 @@ public class Main {
 		System.out.println(" ");
 		em.getTransaction().commit();
 		
-		// 3) Generar un reporte de las carreras, que para cada carrera incluya información de los
-		// inscriptos y egresados por año. Se deben ordenar las carreras alfabéticamente, y presentar
-		// los años de manera cronológica.
+		// 3) Generar un reporte de las carreras, que para cada carrera incluya informaciï¿½n de los
+		// inscriptos y egresados por aï¿½o. Se deben ordenar las carreras alfabï¿½ticamente, y presentar
+		// los aï¿½os de manera cronolï¿½gica.
 		
 		Iterator<DTOInscriptos> carreras = cr.getReporteCarreras().iterator();
 		System.out.println("Carreras ordenadas alfabeticamente con inscriptos y egresados, ordenadas cronologicamente");

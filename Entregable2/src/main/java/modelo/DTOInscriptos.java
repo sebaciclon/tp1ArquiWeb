@@ -47,11 +47,11 @@ public class DTOInscriptos {
 	public String toString() {
 		String data = "";
 		for (Integer key : this.inscriptos.keySet()) {
-			data += "Año = " + key + " \r\n";
+			data += "Aï¿½o = " + key + " \r\n";
 			data += "Inscriptos = " + this.inscriptos.get(key).toString() + " \r\n";
 		}
 		for (Integer key : this.egresados.keySet()) {
-			data += "Año = " + key + " \r\n";
+			data += "Aï¿½o = " + key + " \r\n";
 			data += "Egresados = " + this.egresados.get(key).toString() + " \r\n";
 		}
 
