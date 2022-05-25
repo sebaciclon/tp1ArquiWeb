@@ -1,6 +1,9 @@
 package main.java.modelo;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -8,7 +11,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.NamedQueries;
 import jakarta.persistence.NamedQuery;
 import jakarta.persistence.OneToMany;
-import jakarta.persistence.Transient;
 
 @Entity
 @NamedQueries(value = {
@@ -44,8 +46,8 @@ public class Estudiante {
 	@Column(nullable=false)	
 	private String ciudad;
 	
-	@Transient
-	// @OneToMany(fetch = FetchType.EAGER, mappedBy = "estudiante")	
+	@JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "estudiante")	
 	private List<Inscripcion> carreras;	
 
 	public Estudiante(int lU, String nombres, String apellidos, int edad, String genero, String dni, String ciudad,
