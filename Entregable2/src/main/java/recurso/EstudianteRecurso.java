@@ -5,7 +5,9 @@ import java.util.List;
 import jakarta.persistence.EntityManager;
 
 import main.java.context.ContextListener;
+import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
+import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
@@ -25,6 +27,17 @@ public class EstudianteRecurso {
 		em.close();
 		return this.getResponse(Status.OK, e);
 	}
+	
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response save(Estudiante e) {
+		EntityManager em = ContextListener.createEntityManager();
+		this.getRepository(em).save(e);
+		em.close();
+		return this.getResponse(Status.CREATED, e);
+	}
+
 
 	private EstudianteRepository getRepository(EntityManager em) {
 		return new EstudianteRepository(em);
