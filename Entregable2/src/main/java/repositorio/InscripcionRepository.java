@@ -1,8 +1,8 @@
-package repositorio;
+package main.java.repositorio;
 
 import jakarta.persistence.EntityManager;
-import interfaces.JPARepository;
-import modelo.Inscripcion;
+import main.java.interfaces.JPARepository;
+import main.java.modelo.Inscripcion;
 
 public class InscripcionRepository implements JPARepository<Inscripcion>{
 	

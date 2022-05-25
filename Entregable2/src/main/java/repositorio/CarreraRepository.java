@@ -1,4 +1,4 @@
-package repositorio;
+package main.java.repositorio;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,11 +7,11 @@ import java.util.List;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
-import interfaces.JPARepository;
-import modelo.Carrera;
-import modelo.DTOInscriptos;
+import main.java.interfaces.JPARepository;
+import main.java.modelo.Carrera;
+import main.java.modelo.DTOInscriptos;
 
-import modelo.Estudiante;
+import main.java.modelo.*;
 
 public class CarreraRepository implements JPARepository<Carrera>{
 	

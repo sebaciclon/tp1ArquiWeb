@@ -1,4 +1,4 @@
-package main;
+package main.java.main;
 
 /**
  * Los ejercicios 2 y 3 se resolvieron mediante el uso de createNamedQuery
@@ -17,13 +17,13 @@ import java.util.Date;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
-import modelo.Carrera;
-import modelo.DTOInscriptos;
-import modelo.Estudiante;
-import modelo.Inscripcion;
-import repositorio.CarreraRepository;
-import repositorio.EstudianteRepository;
-import repositorio.InscripcionRepository;
+import main.java.modelo.Carrera;
+import main.java.modelo.DTOInscriptos;
+import main.java.modelo.Estudiante;
+import main.java.repositorio.CarreraRepository;
+import main.java.repositorio.EstudianteRepository;
+import main.java.repositorio.InscripcionRepository;
+import main.java.modelo.Inscripcion;
 
 public class Main {
 

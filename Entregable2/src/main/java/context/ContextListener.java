@@ -1,4 +1,4 @@
-package context;
+package main.java.context;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
