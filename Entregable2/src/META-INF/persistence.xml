@@ -20,11 +20,7 @@
             <property name="hibernate.hbm2ddl.auto" value="update"/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQL8Dialect"/>
             <property name="show_sql" value="true"/>
-            
-            <property name="packagesToScan" value="main.java.modelo" />
         </properties>
-        
-        
     </persistence-unit>
         
 </persistence>
