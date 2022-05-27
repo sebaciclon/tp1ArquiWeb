@@ -1,19 +1,11 @@
+
 package main.java.repositorio;
 
 import java.util.List;
-
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.Persistence;
 import jakarta.persistence.TypedQuery;
-
 import main.java.interfaces.JPARepository;
-import jakarta.ws.rs.GET;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
-import jakarta.ws.rs.core.MediaType;
-import main.java.modelo.Carrera;
 import main.java.modelo.Estudiante;
-import main.java.modelo.*;
 
 public class EstudianteRepository implements JPARepository<Estudiante> {
 	
