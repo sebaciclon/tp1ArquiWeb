@@ -3,6 +3,10 @@ package main.java.modelo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
+import org.hibernate.annotations.Proxy;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -11,14 +15,17 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
 @Entity
+@Proxy(lazy=false)
 public class Inscripcion implements Serializable{
 	
 	@Id
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)		// Muchas inscripciones pertenecen a un estudiante
 	@JoinColumn
 	private Estudiante estudiante;
 	
 	@Id
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)			// Muchas inscripciones pertenecen a una carrera
 	@JoinColumn
 	private Carrera carrera;

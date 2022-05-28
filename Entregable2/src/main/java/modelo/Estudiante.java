@@ -2,7 +2,10 @@ package main.java.modelo;
 
 import java.util.List;
 
+import org.hibernate.annotations.Proxy;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -19,6 +22,8 @@ import jakarta.persistence.OneToMany;
 		@NamedQuery(name = Estudiante.BUSCAR_POR_GENERO, query = "SELECT e FROM Estudiante e WHERE e.genero = :genero"),
 		@NamedQuery(name = Estudiante.BUSCAR_POR_CARRERA_Y_CIUDAD, query = "SELECT i.estudiante FROM Inscripcion i,  Estudiante e, Carrera c WHERE c.idCarrera = i.carrera.idCarrera AND e.LU = i.estudiante.LU AND c.idCarrera = :carrera AND i.estudiante.ciudad =: ciudad")
 })
+
+@Proxy(lazy=false)
 public class Estudiante {
 	public static final String ORDENAR_POR_APELLIDO = "Estudiante.ordenarPorApellido";
 	public static final String BUSCAR_POR_LU = "Estudiante.buscarPorLU";
@@ -46,7 +51,7 @@ public class Estudiante {
 	@Column(nullable=false)	
 	private String ciudad;
 	
-	@JsonIgnore
+	@JsonManagedReference
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "estudiante")	
 	private List<Inscripcion> carreras;	
 

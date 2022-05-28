@@ -2,8 +2,15 @@ package main.java.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.annotations.Proxy;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -23,6 +30,7 @@ import jakarta.persistence.OneToMany;
 		@NamedQuery(name = Carrera.BUSCAR_POR_ID, query = "SELECT c FROM Carrera c WHERE c.idCarrera = :idCarrera")
 })
 
+@Proxy(lazy=false)
 public class Carrera {
 	public static final String BUSCAR_TODAS = "Carrera.buscarTodas";
 	public static final String BUSCAR_CON_INSCRIPTOS = "Carrera.buscarConInscriptos";
@@ -38,7 +46,8 @@ public class Carrera {
 	@Column(nullable=false)	
 	private String nombre;
 	
-	@OneToMany(mappedBy = "carrera")	
+	@JsonManagedReference
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "carrera")	
 	private List<Inscripcion> estudiantes;
 	
 	public Carrera(int idCarrera, String nombre) {
