@@ -36,7 +36,7 @@ public class EstudianteRepository implements JPARepository<Estudiante> {
 	}
 	
 	
-	public Estudiante getById(int id) {
+	public Estudiante getByLU(int id) {
 		TypedQuery<Estudiante> tq = this.em.createNamedQuery(
 				Estudiante.BUSCAR_POR_LU, Estudiante.class).setParameter("num_lu", id);
 		return tq.getSingleResult();

@@ -42,14 +42,14 @@ public class EstudianteRecurso {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getById(@PathParam("id") int id) {
 		EntityManager em = ContextListener.createEntityManager();
-		Estudiante e = this.getRepository(em).getById(id);
+		Estudiante e = this.getRepository(em).getByLU(id);
 		
 		em.close();
 		return this.getResponse(Status.OK, e);
 	}
 	
 	@GET
-	@Path("/{String}")
+	@Path("/genero/{genero}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getByGenre(@PathParam("genero") String genero) {
 		EntityManager em = ContextListener.createEntityManager();

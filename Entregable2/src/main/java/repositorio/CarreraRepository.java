@@ -8,9 +8,6 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 
 import main.java.interfaces.JPARepository;
-import main.java.modelo.Carrera;
-import main.java.modelo.DTOInscriptos;
-
 import main.java.modelo.*;
 
 public class CarreraRepository implements JPARepository<Carrera>{
@@ -35,6 +32,12 @@ public class CarreraRepository implements JPARepository<Carrera>{
 		TypedQuery<Carrera> tp = this.em.createNamedQuery(
 				Carrera.BUSCAR_TODAS, Carrera.class);
 		return tp.getResultList();
+	}
+	
+	public Carrera getById(int id) {
+		TypedQuery<Carrera> tp = this.em.createNamedQuery(
+				Carrera.BUSCAR_POR_ID, Carrera.class).setParameter("idCarrera", id);
+		return tp.getSingleResult();
 	}
 
 	public List<Carrera> getCarrerasConInscriptos() {

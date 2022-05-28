@@ -56,6 +56,14 @@ public class Inscripcion implements Serializable{
 		this.fecha_ingreso = ingreso;
 		this.fecha_egreso = egreso;
 	}
+	
+	public Inscripcion(Estudiante estudiante, Carrera carrera, Timestamp ingreso) {
+		super();
+		this.estudiante = estudiante;
+		this.carrera = carrera;
+		this.fecha_ingreso = ingreso;
+		this.fecha_egreso = null;
+	}
 
 	public Estudiante getEstudiante() {
 		return estudiante;

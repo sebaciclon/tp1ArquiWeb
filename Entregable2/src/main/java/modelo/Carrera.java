@@ -19,7 +19,8 @@ import jakarta.persistence.OneToMany;
 		@NamedQuery(name = Carrera.BUSCAR_INSCRIPTOS_DE_CARRERA_POR_FECHA, query = "SELECT i.estudiante FROM Inscripcion i,  Estudiante e, Carrera c WHERE c.idCarrera = i.carrera.idCarrera AND e.LU = i.estudiante.LU AND c.idCarrera = :carreraId AND YEAR (i.fecha_ingreso) = : fecha"),
 		@NamedQuery(name = Carrera.BUSCAR_EGRESADOS_DE_CARRERA_POR_FECHA, query = "SELECT i.estudiante FROM Inscripcion i,  Estudiante e, Carrera c WHERE c.idCarrera = i.carrera.idCarrera AND e.LU = i.estudiante.LU AND c.idCarrera = :carreraId AND YEAR (i.fecha_egreso) = : fecha"),
 		@NamedQuery(name = Carrera.BUSCAR_FECHAS_INGRESO, query = "SELECT YEAR(i.fecha_ingreso) FROM Inscripcion i GROUP BY YEAR (i.fecha_ingreso) ORDER BY YEAR (i.fecha_ingreso)"),
-		@NamedQuery(name = Carrera.BUSCAR_FECHAS_EGRESO, query = "SELECT YEAR(i.fecha_egreso) FROM Inscripcion i WHERE i.fecha_egreso IS NOT NULL GROUP BY YEAR(i.fecha_egreso) ORDER BY YEAR (i.fecha_egreso)")
+		@NamedQuery(name = Carrera.BUSCAR_FECHAS_EGRESO, query = "SELECT YEAR(i.fecha_egreso) FROM Inscripcion i WHERE i.fecha_egreso IS NOT NULL GROUP BY YEAR(i.fecha_egreso) ORDER BY YEAR (i.fecha_egreso)"),
+		@NamedQuery(name = Carrera.BUSCAR_POR_ID, query = "SELECT c FROM Carrera c WHERE c.idCarrera = :idCarrera")
 })
 
 public class Carrera {
@@ -29,6 +30,7 @@ public class Carrera {
 	public static final String BUSCAR_EGRESADOS_DE_CARRERA_POR_FECHA = "Carrera.buscarEgresadosDeCarreraPorFecha";
 	public static final String BUSCAR_FECHAS_INGRESO = "Carrera.buscarFechasIngreso";
 	public static final String BUSCAR_FECHAS_EGRESO = "Carrera.buscarFechasEgreso";
+	public static final String BUSCAR_POR_ID = "Carrera.buscarPorID";
 	
 	@Id
 	private int idCarrera;
