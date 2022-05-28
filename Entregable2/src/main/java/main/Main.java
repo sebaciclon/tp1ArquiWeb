@@ -113,7 +113,7 @@ public class Main {
 		
 		em.getTransaction().begin();
 		System.out.println("Estudiante cuyo numero de libreta es 40");
-		System.out.println(er.getById(40));
+		System.out.println(er.getByLU(40));
 		System.out.println(" ");
 		em.getTransaction().commit();
 		
