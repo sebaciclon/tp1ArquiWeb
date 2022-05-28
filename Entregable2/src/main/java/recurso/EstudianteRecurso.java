@@ -20,7 +20,7 @@ public class EstudianteRecurso {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getAll() {
+	public Response getAllBySurname() {
 		EntityManager em = ContextListener.createEntityManager();
 		List<Estudiante> e = this.getRepository(em).getAll();
 		em.close();
@@ -57,6 +57,16 @@ public class EstudianteRecurso {
 		em.close();
 		return this.getResponse(Status.OK, e);
 	}
+	
+	@GET
+	@Path("/{id}/{ciudad}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getEstudiantesByCarreraByCiudad(@PathParam("id") int id, @PathParam("ciudad") String ciudad) {
+		EntityManager em = ContextListener.createEntityManager();
+		List<Estudiante> e = this.getRepository(em).getEstudiantesByCarreraByCiudad(id, ciudad);
+		em.close();
+		return this.getResponse(Status.OK, e);
+	}
 
 
 	private EstudianteRepository getRepository(EntityManager em) {
@@ -72,22 +82,7 @@ public class EstudianteRecurso {
 			return Response.status(status.getStatusCode(), status.toString()).entity(o).build();
 		} else {
 			return Response.status(status.getStatusCode(), status.toString()).build();
-			//return Response.status(Response.Status.NOT_FOUND)
-		    //         .entity("El recurso con id no fue encontrado").type(MediaType.TEXT_PLAIN).build();
 		}
 	}
-	/*
-	public class RecursoDuplicado extends WebApplicationException {
-	     public RecursoDuplicado(int id) {
-	         super(Response.status(Response.Status.CONFLICT)
-	             .entity("El recurso con ID "+id+" ya existe").type(MediaType.TEXT_PLAIN).build());
-	     }
-	}
-	
-	public class RecursoNoExiste extends WebApplicationException {
-	     public RecursoNoExiste(int id) {
-	         super(Response.status(Response.Status.NOT_FOUND)
-	             .entity("El recurso con id "+id+" no fue encontrado").type(MediaType.TEXT_PLAIN).build());
-	     }
-	}*/
+
 }

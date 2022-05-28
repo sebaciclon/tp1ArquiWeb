@@ -66,8 +66,6 @@ public class InscripcionRecurso {
 			return Response.status(status.getStatusCode(), status.toString()).entity(o).build();
 		} else {
 			return Response.status(status.getStatusCode(), status.toString()).build();
-			//return Response.status(Response.Status.NOT_FOUND)
-		    //         .entity("El recurso con id no fue encontrado").type(MediaType.TEXT_PLAIN).build();
 		}
 	}
 }

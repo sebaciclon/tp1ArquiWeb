@@ -11,6 +11,7 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.Status;
 import main.java.context.ContextListener;
 import main.java.modelo.Carrera;
+import main.java.modelo.DTOInscriptos;
 import main.java.repositorio.CarreraRepository;
 
 @Path("/carreras")
@@ -35,6 +36,16 @@ public class CarreraRecurso {
 		return this.getResponse(Status.OK, c);
 	}
 	
+	@GET
+	@Path("/reporteCarreras")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getReporteCarreras() {
+		EntityManager em = ContextListener.createEntityManager();
+		List<DTOInscriptos> c = this.getRepository(em).getReporteCarreras();
+		em.close();
+		return this.getResponse(Status.OK, c);
+	}
+	
 	private Response getResponse(Status status) {
 		return getResponse(status, null);
 	}
@@ -48,8 +59,6 @@ public class CarreraRecurso {
 			return Response.status(status.getStatusCode(), status.toString()).entity(o).build();
 		} else {
 			return Response.status(status.getStatusCode(), status.toString()).build();
-			//return Response.status(Response.Status.NOT_FOUND)
-		    //         .entity("El recurso con id no fue encontrado").type(MediaType.TEXT_PLAIN).build();
 		}
 	}
 }
