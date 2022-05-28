@@ -25,6 +25,16 @@ public class CarreraRecurso {
 		return this.getResponse(Status.OK, c);
 	}
 	
+	@GET
+	@Path("/inscriptos")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getAllWithRegistered() {
+		EntityManager em = ContextListener.createEntityManager();
+		List<Carrera> c = this.getRepository(em).getCarrerasConInscriptos();
+		em.close();
+		return this.getResponse(Status.OK, c);
+	}
+	
 	private Response getResponse(Status status) {
 		return getResponse(status, null);
 	}
