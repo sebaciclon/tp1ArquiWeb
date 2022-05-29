@@ -5,75 +5,25 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="css/style.css">
-        <title>TP3 | Arq.Web </title>
+        <title>TP3 | Arq. Web | Servicios REST y Jersey </title>
     </head>
     <body>
         <header>
-            <div>Unicen FCE - TUDAI - Arquitecturas Web 2021 - Tandil</div>
-            <div>Bellido Sebastian - Cepeda Tomas - Nuñez David</div>
+            <div>Alumnos: Judit Meaca - Dolores Peña - Leonardo Esains - Mauricio Oruezabal - Sebastian Esains</div>
+            
         </header>
+         
         <div class="container">
-            <div class="container_title">
-                <h1 class="title">Buscar estudiante por número libreta</h1>
-            </div>
-            <form method="post" id="for-buscar-alumno" class="container_form">
-                <label class="label" for="num_libreta">
-                    <span>Número Libreta</span>
-                    <input class="input" type="text" name="num_libreta" id="name"
-                        autocomplete="número de libreta" required>
-                </label>
-                <button class="send_button" type="submit">Buscar</button>
-            </form>
-            <div id="response-alumno">
-
-            </div>
-
-
-            <hr class="hr">
-            <div class="container_title">
-                <h1 class="title">Buscar alumnos por g&eacute;nero</h1>
-            </div>
-            <form method="post" id="for-buscar-alumno-genero"
-                class="container_form">
-                <label class="label" for="num_libreta">
-                    <span>G&eacute;nero</span>
-                    <input class="input" type="text" autocomplete="g&eacute;nero"
-                        required>
-                </label>
-                <button class="send_button" type="submit">Buscar</button>
-            </form>
-            <div id="response-alumno-genero">
-
-            </div>
-
-            <hr class="hr">
-
-
-
-            <div class="container_title">
-                <h1 class="title">Carreras con estudiantes</h1>
-            </div>
-
-            <div id="response-carrera-con-alumnos"></div>
-
-
-            <hr class="hr">
-
-            <div class="container_title">
-                <h1 class="title">Buscar alumnos de una carrera por ciudad</h1>
-            </div>
-            <div id="form-alumno-por-carrera-ciudad"></div>
-            <div id="response-alumno-por-carrera-ciudad"></div>
-
-            <hr class="hr">
-
-            <h1>Reporte de carreras</h1>
-            <div id="response-reporte"></div>
-            <div class="container_all">
+        	<div class="container_all">
                 <div class="container_title">
                     <h1 class="title">Registro de estudiante</h1>
                 </div>
                 <form method="post" id="register_form" class="container_form">
+                	<label class="label" for="lu">
+                        <span>Nùmero Libreta Universitaria</span>
+                        <input class="input" type="text" name="lu" id="name"
+                            autocomplete="LU" required>
+                    </label>
                     <label class="label" for="nombre">
                         <span>Nombres</span>
                         <input class="input" type="text" name="nombre" id="name"
@@ -122,6 +72,71 @@
             </div>
 
             <hr class="hr">
+        
+        
+        
+        
+        
+        	<!-- 
+            <div class="container_title">
+                <h1 class="title">Buscar estudiante por número libreta</h1>
+            </div>
+            <form method="post" id="for-buscar-alumno" class="container_form">
+                <label class="label" for="num_libreta">
+                    <span>Número Libreta</span>
+                    <input class="input" type="text" name="num_libreta" id="name"
+                        autocomplete="número de libreta" required>
+                </label>
+                <button class="send_button" type="submit">Buscar</button>
+            </form>
+            <div id="response-alumno">
+		
+            </div>
+
+
+            <hr class="hr">
+            <div class="container_title">
+                <h1 class="title">Buscar alumnos por g&eacute;nero</h1>
+            </div>
+            <form method="post" id="for-buscar-alumno-genero"
+                class="container_form">
+                <label class="label" for="num_libreta">
+                    <span>G&eacute;nero</span>
+                    <input class="input" type="text" autocomplete="g&eacute;nero"
+                        required>
+                </label>
+                <button class="send_button" type="submit">Buscar</button>
+            </form>
+            <div id="response-alumno-genero">
+
+            </div>
+
+            <hr class="hr">
+		
+
+
+            <div class="container_title">
+                <h1 class="title">Carreras con estudiantes</h1>
+            </div>
+
+            <div id="response-carrera-con-alumnos"></div>
+
+
+            <hr class="hr">
+
+            <div class="container_title">
+                <h1 class="title">Buscar alumnos de una carrera por ciudad</h1>
+            </div>
+            <div id="form-alumno-por-carrera-ciudad"></div>
+            <div id="response-alumno-por-carrera-ciudad"></div>
+
+            <hr class="hr">
+		
+            <h1>Reporte de carreras</h1>
+            <div id="response-reporte"></div>
+            
+        -->
+            
         </div>
         <script src="js/form.js"></script>
         <script src="js/fetch.js"></script>
