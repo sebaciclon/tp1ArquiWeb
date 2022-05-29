@@ -18,6 +18,7 @@ import jakarta.persistence.OneToMany;
 @Entity
 @NamedQueries(value = {
 		@NamedQuery(name = Estudiante.ORDENAR_POR_APELLIDO, query = "SELECT e FROM Estudiante e ORDER BY e.apellidos"),
+		
 		@NamedQuery(name = Estudiante.BUSCAR_POR_LU, query = "SELECT e FROM Estudiante e WHERE e.LU = :num_lu"),
 		@NamedQuery(name = Estudiante.BUSCAR_POR_GENERO, query = "SELECT e FROM Estudiante e WHERE e.genero = :genero"),
 		@NamedQuery(name = Estudiante.BUSCAR_POR_CARRERA_Y_CIUDAD, query = "SELECT i.estudiante FROM Inscripcion i,  Estudiante e, Carrera c WHERE c.idCarrera = i.carrera.idCarrera AND e.LU = i.estudiante.LU AND c.idCarrera = :carrera AND i.estudiante.ciudad =: ciudad")
@@ -143,11 +144,7 @@ public class Estudiante {
 		return carreras;
 	}
 
-	@Override
-	public String toString() {
-		return "Estudiante [LU=" + LU + ", nombres=" + nombres + ", apellidos=" + apellidos + ", edad=" + edad
-				+ ", genero=" + genero + ", dni=" + dni + ", ciudad=" + ciudad + "]";
-	} 
+	
 	 
 	 
 }

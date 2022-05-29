@@ -17,16 +17,19 @@ public class EstudianteRepository implements JPARepository<Estudiante> {
 
 	@Override
 	public void save(Estudiante e) {
+		em.getTransaction().begin();
 		if(!em.contains(e)) {
-			em.getTransaction().begin();
+			//em.getTransaction().begin();
 			em.persist(e);		// insert
-			em.getTransaction().commit();
+			//em.getTransaction().commit();
 		}
 		else {
-			em.getTransaction().begin();
+			//em.getTransaction().begin();
 			em.merge(e);
-			em.getTransaction().commit();
+			//em.getTransaction().commit();
 		}
+		em.getTransaction().commit();
+		
 	}
 
 	public List<Estudiante> getAll() {

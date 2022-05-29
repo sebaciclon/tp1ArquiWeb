@@ -87,10 +87,12 @@ public class Inscripcion implements Serializable{
 	public void setCarrera(Carrera carrera) {
 		this.carrera = carrera;
 	}
-
+	
+	
+/*
 	@Override
 	public String toString() {
 		return "Inscripcion [estudiante=" + estudiante + ", carrera=" + carrera + ", fecha_ingreso=" + fecha_ingreso
 				+ ", fecha_egreso=" + fecha_egreso + "]";
-	}
+	}*/
 }
