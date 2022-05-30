@@ -1,14 +1,11 @@
-package repositorio;
+
+package main.java.repositorio;
 
 import java.util.List;
-
-import javax.persistence.EntityManager;
-import javax.persistence.Persistence;
-import javax.persistence.TypedQuery;
-
-import interfaces.JPARepository;
-import modelo.Carrera;
-import modelo.Estudiante;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
+import main.java.interfaces.JPARepository;
+import main.java.modelo.Estudiante;
 
 public class EstudianteRepository implements JPARepository<Estudiante> {
 	
@@ -20,12 +17,19 @@ public class EstudianteRepository implements JPARepository<Estudiante> {
 
 	@Override
 	public void save(Estudiante e) {
+		em.getTransaction().begin();
 		if(!em.contains(e)) {
+			//em.getTransaction().begin();
 			em.persist(e);		// insert
+			//em.getTransaction().commit();
 		}
 		else {
+			//em.getTransaction().begin();
 			em.merge(e);
+			//em.getTransaction().commit();
 		}
+		em.getTransaction().commit();
+		
 	}
 
 	public List<Estudiante> getAll() {
@@ -35,7 +39,7 @@ public class EstudianteRepository implements JPARepository<Estudiante> {
 	}
 	
 	
-	public Estudiante getById(int id) {
+	public Estudiante getByLU(int id) {
 		TypedQuery<Estudiante> tq = this.em.createNamedQuery(
 				Estudiante.BUSCAR_POR_LU, Estudiante.class).setParameter("num_lu", id);
 		return tq.getSingleResult();

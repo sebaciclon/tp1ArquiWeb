@@ -1,17 +1,14 @@
-package repositorio;
+package main.java.repositorio;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.persistence.EntityManager;
-import javax.persistence.TypedQuery;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.TypedQuery;
 
-import interfaces.JPARepository;
-import modelo.Carrera;
-import modelo.DTOInscriptos;
-
-import modelo.Estudiante;
+import main.java.interfaces.JPARepository;
+import main.java.modelo.*;
 
 public class CarreraRepository implements JPARepository<Carrera>{
 	
@@ -35,6 +32,12 @@ public class CarreraRepository implements JPARepository<Carrera>{
 		TypedQuery<Carrera> tp = this.em.createNamedQuery(
 				Carrera.BUSCAR_TODAS, Carrera.class);
 		return tp.getResultList();
+	}
+	
+	public Carrera getById(int id) {
+		TypedQuery<Carrera> tp = this.em.createNamedQuery(
+				Carrera.BUSCAR_POR_ID, Carrera.class).setParameter("idCarrera", id);
+		return tp.getSingleResult();
 	}
 
 	public List<Carrera> getCarrerasConInscriptos() {

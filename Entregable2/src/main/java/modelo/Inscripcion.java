@@ -1,24 +1,31 @@
-package modelo;
+package main.java.modelo;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import org.hibernate.annotations.Proxy;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 
 @Entity
+@Proxy(lazy=false)
 public class Inscripcion implements Serializable{
 	
 	@Id
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)		// Muchas inscripciones pertenecen a un estudiante
 	@JoinColumn
 	private Estudiante estudiante;
 	
 	@Id
+	@JsonBackReference
 	@ManyToOne(fetch = FetchType.LAZY)			// Muchas inscripciones pertenecen a una carrera
 	@JoinColumn
 	private Carrera carrera;
@@ -56,6 +63,14 @@ public class Inscripcion implements Serializable{
 		this.fecha_ingreso = ingreso;
 		this.fecha_egreso = egreso;
 	}
+	
+	public Inscripcion(Estudiante estudiante, Carrera carrera, Timestamp ingreso) {
+		super();
+		this.estudiante = estudiante;
+		this.carrera = carrera;
+		this.fecha_ingreso = ingreso;
+		this.fecha_egreso = null;
+	}
 
 	public Estudiante getEstudiante() {
 		return estudiante;
@@ -72,10 +87,12 @@ public class Inscripcion implements Serializable{
 	public void setCarrera(Carrera carrera) {
 		this.carrera = carrera;
 	}
-
+	
+	
+/*
 	@Override
 	public String toString() {
 		return "Inscripcion [estudiante=" + estudiante + ", carrera=" + carrera + ", fecha_ingreso=" + fecha_ingreso
 				+ ", fecha_egreso=" + fecha_egreso + "]";
-	}
+	}*/
 }

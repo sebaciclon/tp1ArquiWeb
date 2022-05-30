@@ -1,20 +1,30 @@
-package modelo;
+package main.java.modelo;
 
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+
+import org.hibernate.annotations.Proxy;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @NamedQueries(value = {
 		@NamedQuery(name = Estudiante.ORDENAR_POR_APELLIDO, query = "SELECT e FROM Estudiante e ORDER BY e.apellidos"),
+		
 		@NamedQuery(name = Estudiante.BUSCAR_POR_LU, query = "SELECT e FROM Estudiante e WHERE e.LU = :num_lu"),
 		@NamedQuery(name = Estudiante.BUSCAR_POR_GENERO, query = "SELECT e FROM Estudiante e WHERE e.genero = :genero"),
 		@NamedQuery(name = Estudiante.BUSCAR_POR_CARRERA_Y_CIUDAD, query = "SELECT i.estudiante FROM Inscripcion i,  Estudiante e, Carrera c WHERE c.idCarrera = i.carrera.idCarrera AND e.LU = i.estudiante.LU AND c.idCarrera = :carrera AND i.estudiante.ciudad =: ciudad")
 })
+
+@Proxy(lazy=false)
 public class Estudiante {
 	public static final String ORDENAR_POR_APELLIDO = "Estudiante.ordenarPorApellido";
 	public static final String BUSCAR_POR_LU = "Estudiante.buscarPorLU";
@@ -42,7 +52,8 @@ public class Estudiante {
 	@Column(nullable=false)	
 	private String ciudad;
 	
-	@OneToMany(mappedBy = "estudiante")	
+	@JsonManagedReference
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "estudiante")	
 	private List<Inscripcion> carreras;	
 
 	public Estudiante(int lU, String nombres, String apellidos, int edad, String genero, String dni, String ciudad,
@@ -133,11 +144,7 @@ public class Estudiante {
 		return carreras;
 	}
 
-	@Override
-	public String toString() {
-		return "Estudiante [LU=" + LU + ", nombres=" + nombres + ", apellidos=" + apellidos + ", edad=" + edad
-				+ ", genero=" + genero + ", dni=" + dni + ", ciudad=" + ciudad + "]";
-	} 
+	
 	 
 	 
 }

@@ -1,8 +1,9 @@
-package repositorio;
+package main.java.repositorio;
 
-import javax.persistence.EntityManager;
-import interfaces.JPARepository;
-import modelo.Inscripcion;
+import jakarta.persistence.EntityManager;
+import main.java.interfaces.JPARepository;
+import main.java.modelo.Estudiante;
+import main.java.modelo.Inscripcion;
 
 public class InscripcionRepository implements JPARepository<Inscripcion>{
 	
@@ -14,11 +15,13 @@ public class InscripcionRepository implements JPARepository<Inscripcion>{
 
 	@Override
 	public void save(Inscripcion i) {
+		em.getTransaction().begin();
 		if(!em.contains(i)) {
 			em.persist(i);		// insert
 		}
 		else {
 			em.merge(i);
 		}
+		em.getTransaction().commit();
 	}
 }
