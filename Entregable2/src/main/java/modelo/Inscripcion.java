@@ -19,13 +19,13 @@ import jakarta.persistence.ManyToOne;
 public class Inscripcion implements Serializable{
 	
 	@Id
-	@JsonBackReference
+	@JsonBackReference(value="inscripcion-estudiante")
 	@ManyToOne(fetch = FetchType.LAZY)		// Muchas inscripciones pertenecen a un estudiante
 	@JoinColumn
 	private Estudiante estudiante;
 	
 	@Id
-	@JsonBackReference
+	@JsonBackReference(value="inscripcion-carrera")
 	@ManyToOne(fetch = FetchType.LAZY)			// Muchas inscripciones pertenecen a una carrera
 	@JoinColumn
 	private Carrera carrera;

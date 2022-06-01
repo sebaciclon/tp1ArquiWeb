@@ -52,7 +52,7 @@ public class Estudiante {
 	@Column(nullable=false)	
 	private String ciudad;
 	
-	@JsonManagedReference
+	@JsonManagedReference(value="inscripcion-estudiante")
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "estudiante")	
 	private List<Inscripcion> carreras;	
 
