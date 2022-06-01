@@ -6,6 +6,7 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import main.java.interfaces.JPARepository;
 import main.java.modelo.Estudiante;
+import main.java.modelo.Inscripcion;
 
 public class EstudianteRepository implements JPARepository<Estudiante> {
 	
@@ -14,22 +15,34 @@ public class EstudianteRepository implements JPARepository<Estudiante> {
 	public EstudianteRepository(EntityManager em) {
 		this.em = em;
 	}
-
+/*
+	@Override
+	public void save(Estudiante e) {
+		//em.getTransaction().begin();
+		if(!em.contains(e)) {
+			em.getTransaction().begin();
+			em.persist(e);		// insert
+			em.getTransaction().commit();
+		}
+		else {
+			em.getTransaction().begin();
+			em.merge(e);
+			em.getTransaction().commit();
+		}
+		//em.getTransaction().commit();
+		
+	}*/
+	
 	@Override
 	public void save(Estudiante e) {
 		em.getTransaction().begin();
 		if(!em.contains(e)) {
-			//em.getTransaction().begin();
 			em.persist(e);		// insert
-			//em.getTransaction().commit();
 		}
 		else {
-			//em.getTransaction().begin();
 			em.merge(e);
-			//em.getTransaction().commit();
 		}
 		em.getTransaction().commit();
-		
 	}
 
 	public List<Estudiante> getAll() {
