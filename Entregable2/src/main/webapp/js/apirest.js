@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
         console.log(lu);
         console.log(nombres);
         let estudiante = {
-            LU: lu,
+            lu: lu,
             apellidos: apellidos,
             ciudad: ciudad,
             dni: dni,
@@ -101,10 +101,11 @@ document.addEventListener("DOMContentLoaded", ()=> {
     // D) DEVUELVE ESTUDIANTE POR LU
     async function getEstudiante() {
         let lu = document.querySelector("#lu_d").value;
-        const response = await fetch(base + "estudiantes" + "/" + lu);
+        console.log("********************************************************");
+        const response = await fetch(base + "estudiantes/" + lu);
         const data = await response.json();
-        console.log(data.nombres);
-        console.log(data.lu);
+        console.log(data.JSON.apellidos);
+        //console.log(data.lu);
         alert("....");
         return data;
     }
