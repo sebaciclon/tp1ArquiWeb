@@ -26,19 +26,18 @@
                 </label>
                 <label class="label">
                     <span>Nombres</span>
-                    <input class="input" type="text" name="nombre" id="name" required>
+                    <input class="input" type="text" name="nombres" id="nombres" required>
                 </label>
                 <label class="label">
-                    <span>Apellido</span>
-                    <input class="input" type="text" name="apellido" id="apellido" required>
+                    <span>Apellidos</span>
+                    <input class="input" type="text" name="apellidos" id="apellidos" required>
                 </label>
                 <label class="label">
                     <span>Género</span>
-                    <select class="input" name="genero" id="genero">
+                    <select class="input" name="genero" id="genero_a">
                         <option value=""></option>
-                        <option value="Maculino">Maculino</option>
+                        <option value="Masculino">Masculino</option>
                         <option value="Femenino">Femenino</option>
-                        <option value="Otro">Otro</option>
                     </select>
                 </label>
                 <label class="label">
@@ -53,7 +52,7 @@
                     <span>Ciudad</span>
                     <input class="input" type="text" name="ciudad" id="ciudad" required>
                 </label>
-                <button class="send_button" type="submit">Registrar</button>
+                <button class="send_button" type="submit" id="btn_registrar">Registrar</button>
             </form>
 
             <hr class="hr">
@@ -72,7 +71,7 @@
                     <span>Id de la carrera</span>
                     <input class="input" type="text" name="idCarrera" id="idCarrera" required>
                 </label>
-                <button class="send_button" type="submit">Matricular</button>
+                <button class="send_button" type="submit" id="btn_matricular">Matricular</button>
             </form>
             
             <hr class="hr">
@@ -83,7 +82,7 @@
                 <h1 class="title">Lista de estudiantes</h1>
             </div>
             <form class="container_form">
-                <button type="submit" class="send_button">Reporte</button>
+                <button type="reset" class="send_button" id="btn_estudiantes">Reporte</button>
             </form>
             <div class="container_list">
                 <ul class="container_students" id="estudiantes"></ul>
@@ -101,7 +100,7 @@
                     <span>Número de Libreta Universitaria</span>
                     <input class="input" type="text" name="lu_d" id="lu_d" required>
                 </label>
-                <button class="send_button" type="submit">Buscar</button>
+                <button class="send_button" type="submit" id="btn_buscar_d">Buscar</button>
             </form>
             <div id="response-alumno"></div>
 
@@ -116,9 +115,13 @@
                 class="container_form">
                 <label class="label">
                     <span>Género</span>
-                    <input class="input" type="text" required>
+                    <select class="input" name="genero" id="genero_e">
+                        <option value=""></option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                    </select>
                 </label>
-                <button class="send_button" type="submit">Buscar</button>
+                <button class="send_button" type="submit" id="btn_buscar_e">Buscar</button>
             </form>
             <div id="response-alumno-genero"></div>
 
@@ -130,7 +133,7 @@
                 <h1 class="title">Carreras con estudiantes inscriptos ordenadas por matrícula</h1>
             </div>
             <form class="container_form">
-                <button type="submit" class="send_button">Reporte</button>
+                <button type="submit" class="send_button" id="btn_carreras">Reporte</button>
             </form>
             <div id="response-carrera-con-alumnos"></div>
 
@@ -163,14 +166,13 @@
                 <h1 class="title">Reporte de carreras</h1>
             </div>
             <form class="container_form">
-                <button type="submit" class="send_button">Reporte</button>
+                <button type="submit" class="send_button" id="btn_reporte">Reporte</button>
             </form>
             <div id="response-reporte"></div>
             
             <hr class="hr">
             
         </div>
-        <script src="js/form.js"></script>
-        <script src="js/fetch.js"></script>
+        <script src="js/apirest.js"></script>
     </body>
 </html>
