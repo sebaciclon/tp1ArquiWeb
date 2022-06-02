@@ -78,6 +78,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
     // D) DEVUELVE ESTUDIANTE POR LU
     async function getEstudiante() {
         let lu = document.querySelector("#lu_d").value;
+        console.log(lu);
         const response = await fetch(base + "estudiantes/" + lu);
         const data = await response.json();
         console.log(data.JSON.apellidos);
