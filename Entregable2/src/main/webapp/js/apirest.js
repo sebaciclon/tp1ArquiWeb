@@ -2,14 +2,6 @@ document.addEventListener("DOMContentLoaded", ()=> {
     //const studenList =  document.getElementById("estudiantes");
     const base = "http://localhost:8080/Entregable2/rest/";
     
-    document.querySelector("#btn_registrar").addEventListener("click", registrar);
-    document.querySelector("#btn_matricular").addEventListener("click", matricular);
-    document.querySelector("#btn_estudiantes").addEventListener("click", getEstudiantes);
-    document.querySelector("#btn_buscar_d").addEventListener("click", getEstudiante);
-    document.querySelector("#btn_buscar_e").addEventListener("click", getEstudiantesPorGenero);
-    document.querySelector("#btn_carreras").addEventListener("click", getCarrerasConInscriptos);
-    document.querySelector("#btn_reporte").addEventListener("click", getCarrerasInscriptosYEgresados);
-    
     // A) ALTA DE ESTUDIANTE
     function registrar(){
         let lu = document.querySelector("#lu_a").value;
@@ -55,7 +47,10 @@ document.addEventListener("DOMContentLoaded", ()=> {
     // C) LISTAR ESTUDIANTES
     async function getEstudiantes() {
         
-        const response = await fetch(base + "estudiantes");
+        const response = await fetch(base + "estudiantes", {
+            "method": 'GET',
+            "mode": 'no-cors'
+        });
         const data = await response.json();
         let lista_estudiantes = document.querySelector("#estudiantes");
         let lista = "";
@@ -72,19 +67,35 @@ document.addEventListener("DOMContentLoaded", ()=> {
             </li>`;
         lista_estudiantes.innerHTML = lista;
         });
-       return data;
     }
 
     // D) DEVUELVE ESTUDIANTE POR LU
-    async function getEstudiante() {
+    /* async function getEstudiante() {
         let lu = document.querySelector("#lu_d").value;
-        console.log(lu);
-        const response = await fetch(base + "estudiantes/" + lu);
-        const data = await response.json();
-        console.log(data.JSON.apellidos);
-        console.log(data.JSON.lu);
-        alert("..entro..");
-        return data;
+        const url = `${base}estudiantes/${lu}`;
+        try {
+            const response2 = await fetch(url, {
+                "method": 'GET',
+                "mode": 'no-cors'
+            }); 
+            const data = await response2.json();
+            console.log(data);
+            
+        } catch (error) {
+            alert(error);
+            console.log(error)
+        }
+    } */
+
+    // D) DEVUELVE ESTUDIANTE POR LU
+    const getEstudiante = () => {
+        const lu = document.querySelector("#lu_d").value;
+        const url = `${base}estudiantes/${lu}`;
+        fetch(url)
+            .then(response => response.json())
+            .then(data => alert(JSON.stringify(data))) //Remplazar función alert por data.ForEach para mostrar en vista
+            .catch(error => alert(error.message)
+        );
     }
     
     // E) LISTAR LOS ESTUDIANTES SEGÚN UN GÉNERO
@@ -120,6 +131,14 @@ document.addEventListener("DOMContentLoaded", ()=> {
         });
         return data;
     }
+
+    document.querySelector("#btn_registrar").addEventListener("click", registrar);
+    document.querySelector("#btn_matricular").addEventListener("click", matricular);
+    document.querySelector("#btn_estudiantes").addEventListener("click", getEstudiantes);
+    document.querySelector("#btn_buscar_d").addEventListener("click", getEstudiante);
+    document.querySelector("#btn_buscar_e").addEventListener("click", getEstudiantesPorGenero);
+    document.querySelector("#btn_carreras").addEventListener("click", getCarrerasConInscriptos);
+    document.querySelector("#btn_reporte").addEventListener("click", getCarrerasInscriptosYEgresados);
 
     /*
     let register_form = document.getElementById('register_form');
