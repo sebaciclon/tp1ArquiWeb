@@ -19,8 +19,6 @@ document.addEventListener("DOMContentLoaded", ()=> {
         let edad = document.querySelector("#edad").value;
         let dni = document.querySelector("#dni").value;
         let ciudad = document.querySelector("#ciudad").value;
-        console.log(lu);
-        console.log(nombres);
         let estudiante = {
             lu: lu,
             apellidos: apellidos,
@@ -36,23 +34,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
             "headers": { "Content-Type": "application/json" },
             "body": JSON.stringify(estudiante)
         })
-        alert("...");
-        /*.then(function(r){
-            if(!r.ok){
-                alert("No pudo conctarse con el Servicio: " + base + "estudiantes");
-                console.log("error");
-                return 1;
-            }
-            return r.json();
-        })
-        .then(function(json){
-            return;
-        })
-        .catch(function(e){
-            alert("No pudo conctarse con el Servicio: " + base + "estudiantes");
-            console.log(e);
-            return 1;
-        })*/
+        alert("Registro de estudiante exitoso!");
     }
 
     // B) MATRICULAR UN ESTUDIANTE EN UNA CARRERA
@@ -67,23 +49,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
             "mode": 'cors',
             "headers": { "Content-Type": "application/json" }
         })
-        .then(function(r){
-            if(!r.ok){
-                alert("No pudo conctarse con el Servicio: " + base + inscripcion + "/" + lu + "/" + idCarrera);
-                console.log("error");
-                return 1;
-            }
-            alert("Inscripción exitosa!");
-            return r.json();
-        })
-        .then(function(json){
-            return;
-        })
-        .catch(function(e){
-            alert("No pudo conctarse con el Servicio: " + base + inscripcion + "/" + lu + "/" + idCarrera);
-            console.log(e);
-            return 1;
-        })
+        alert("Inscripción exitosa!");
     } 
 
     // C) LISTAR ESTUDIANTES
@@ -91,77 +57,45 @@ document.addEventListener("DOMContentLoaded", ()=> {
         
         const response = await fetch(base + "estudiantes");
         const data = await response.json();
+        let lista_estudiantes = document.querySelector("#estudiantes");
+        let lista = "";
         data.forEach(estudiante => {
-            console.log(estudiante.nombres);
-            console.log(estudiante.lu);
+            lista += 
+            `<li class="student">
+                <div class="name">
+                    <h2><b>${estudiante.nombres} ${estudiante.apellidos}</b></h2>
+                </div>
+                <div class="name">
+                    <p>LU: ${estudiante.lu} Edad: ${estudiante.edad} DNI: ${estudiante.dni} Género: ${estudiante.genero}</p>
+                </div>
+                
+            </li>`;
+        lista_estudiantes.innerHTML = lista;
         });
-        return data;
+       return data;
     }
 
     // D) DEVUELVE ESTUDIANTE POR LU
     async function getEstudiante() {
         let lu = document.querySelector("#lu_d").value;
-        console.log("********************************************************");
         const response = await fetch(base + "estudiantes/" + lu);
         const data = await response.json();
         console.log(data.JSON.apellidos);
-        //console.log(data.lu);
-        alert("....");
+        console.log(data.JSON.lu);
+        alert("..entro..");
         return data;
     }
     
-    /*
-    function getEstudiante(){
-        let lu = document.querySelector("#lu_d").value;
-        console.log(lu);
-        fetch(base + "estudiantes" + "/" + lu, {
-            "method": "GET",
-            "mode": 'cors',
-        })
-        .then(function(r){
-            if(!r.ok){
-                alert("No pudo conctarse con el Servicio: " + base + "estudiantes" + "/" + lu);
-                console.log("error");
-                return 1;
-            }
-            return r.json();
-        })
-        .then(function(json){
-            return;
-        })
-        .catch(function(e){
-            alert("No pudo conctarse con el Servicio: " + base + "estudiantes" + "/" + lu);
-            console.log(e);
-            return 1;
-        })
-    } */
-
     // E) LISTAR LOS ESTUDIANTES SEGÚN UN GÉNERO
-    function getEstudiantesPorGenero(){
+    async function getEstudiantesPorGenero() {
         let genero = document.querySelector("#genero_e").value;
-        console.log(genero);
-        fetch(base + "estudiantes" + "/genero/" + genero, {
-            "method": "GET",
-            "mode": 'cors',
-        })
-        .then(function(r){
-            if(!r.ok){
-                alert("No pudo conctarse con el Servicio: " + base + "estudiantes" + "/genero/" + genero);
-                console.log("error");
-                return 1;
-            }
-            alert("...");
-            return r.json();
-        })
-        .then(function(json){
-            return;
-        })
-        .catch(function(e){
-            alert("No pudo conctarse con el Servicio: " + base + "estudiantes" + "/genero/" + genero);
-            console.log(e);
-            return 1;
-        })
-    } 
+        const response = await fetch(base + "estudiantes" + "/genero/" + genero);
+        const data = await response.json();
+        console.log(data.JSON.apellidos);
+        console.log(data.JSON.genero);
+        alert("..entro..");
+        return data;
+    }
 
     
     // f) LISTAR CARRERAS CON INSCRIPTOS
