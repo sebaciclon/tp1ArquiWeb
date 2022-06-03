@@ -99,37 +99,46 @@ document.addEventListener("DOMContentLoaded", ()=> {
     }
     
     // E) LISTAR LOS ESTUDIANTES SEGÚN UN GÉNERO
-    async function getEstudiantesPorGenero() {
-        let genero = document.querySelector("#genero_e").value;
-        const response = await fetch(base + "estudiantes" + "/genero/" + genero);
-        const data = await response.json();
-        console.log(data.JSON.apellidos);
-        console.log(data.JSON.genero);
-        alert("..entro..");
-        return data;
+    const getEstudiantesPorGenero = () => {
+        const genero = document.querySelector("#genero_e").value;
+        const url = `${base}estudiantes/genero/${genero}`;
+        fetch(url)
+            .then(response => response.json())
+            .then(data => alert(JSON.stringify(data))) //Remplazar función alert por data.ForEach para mostrar en vista
+            .catch(error => alert(error.message)
+        );
     }
 
+    // F) LISTAR LOS ESTUDIANTES SEGÚN UN GÉNERO
+    const getCarrerasConInscriptos = () => {
+        const url = `${base}carreras/inscriptos`;
+        fetch(url)
+            .then(response => response.json())
+            .then(data => alert(JSON.stringify(data))) //Remplazar función alert por data.ForEach para mostrar en vista
+            .catch(error => alert(error.message)
+        );
+    }
     
-    // f) LISTAR CARRERAS CON INSCRIPTOS
-    async function getCarrerasConInscriptos() {
-        const response = await fetch(base + "carreras" + "/inscriptos");
-        const data = await response.json();
-        data.forEach(carrera => {
-            console.log(carrera.nombre);
-            alert("...");
-        });
-        return data;
+    // G) LISTAR LOS ESTUDIANTES DE UNA CARRERA, FILTRADO POR CIUDAD
+    const getEstudiantesCarreraCiudad = () => {
+        const carrera = document.querySelector("#idCarrera2").value;
+        const ciudad = document.querySelector("#ciudad2").value;
+        const url = `${base}estudiantes/${carrera}/${ciudad}`;
+        fetch(url)
+            .then(response => response.json())
+            .then(data => alert(JSON.stringify(data))) //Remplazar función alert por data.ForEach para mostrar en vista
+            .catch(error => alert(error.message)
+        );
     }
 
-    // G) LISTAR CARRERAS CON INSCRIPTOS Y EGRESADOS POR AÑO
-    async function getCarrerasInscriptosYEgresados() {
-        const response = await fetch(base + "carreras" + "/reporteCarreras");
-        const data = await response.json();
-        data.forEach(carrera => {
-            console.log(carrera.nombre);
-            alert("....");
-        });
-        return data;
+    // H) LISTAR CARRERAS CON INSCRIPTOS Y EGRESADOS POR AÑO
+    const getCarrerasInscriptosYEgresados = () => {
+        const url = `${base}carreras/reporteCarreras`;
+        fetch(url)
+            .then(response => response.json())
+            .then(data => alert(JSON.stringify(data))) //Remplazar función alert por data.ForEach para mostrar en vista
+            .catch(error => alert(error.message)
+        );
     }
 
     document.querySelector("#btn_registrar").addEventListener("click", registrar);
@@ -138,6 +147,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
     document.querySelector("#btn_buscar_d").addEventListener("click", getEstudiante);
     document.querySelector("#btn_buscar_e").addEventListener("click", getEstudiantesPorGenero);
     document.querySelector("#btn_carreras").addEventListener("click", getCarrerasConInscriptos);
+    document.querySelector("#btn_buscar_g").addEventListener("click", getEstudiantesCarreraCiudad);
     document.querySelector("#btn_reporte").addEventListener("click", getCarrerasInscriptosYEgresados);
 
     /*
