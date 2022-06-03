@@ -69,37 +69,6 @@
         });
     }
     
-
-    // D) DEVUELVE ESTUDIANTE POR LU
-    async function getEstudiante(){
-        const lu = document.querySelector("#lu_d").value;
-        const url = `${base}estudiantes/${lu}`;
-        let estudiante = "";
-        let responseAlumno = document.querySelector("#response-alumno");
-
-        try {
-            const response = await fetch(url, {
-                "method": 'GET',
-                "mode": 'no-cors'
-            });
-            const data = await response.json();
-            
-            estudiante += 
-                `<li class="student">
-                    <div class="name">
-                        <h2><b>${data.nombres} ${data.apellidos}</b></h2>
-                    </div>
-                    <div class="name">
-                        <p>LU: ${data.lu} Edad: ${data.edad} DNI: ${data.dni} Género: ${data.genero}</p>
-                    </div>
-                    
-                </li>`;
-            responseAlumno.innerHTML = estudiante;
-        } catch (error) {
-            responseAlumno.innerHTML = "Falló por" + error.message;
-        }
-    }
-/*     
     // D) DEVUELVE ESTUDIANTE POR LU
     const getEstudiante = () => {
         const lu = document.querySelector("#lu_d").value;
@@ -121,9 +90,8 @@
             </li>`;
             responseAlumno.innerHTML = estudiante;
             })
-            .catch(error => alert(error.message)
-        );
-    } */
+            .catch(() => responseAlumno.innerHTML = `Alumno ${lu} no encontrado`);
+    }
     
     // E) LISTAR LOS ESTUDIANTES SEGÚN UN GÉNERO
     const getEstudiantesPorGenero = () => {
