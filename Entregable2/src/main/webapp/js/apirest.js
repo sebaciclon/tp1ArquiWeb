@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", ()=> {
+'use strict';
     //const studenList =  document.getElementById("estudiantes");
     const base = "http://localhost:8080/Entregable2/rest/";
     
@@ -68,35 +68,62 @@ document.addEventListener("DOMContentLoaded", ()=> {
         lista_estudiantes.innerHTML = lista;
         });
     }
+    
 
     // D) DEVUELVE ESTUDIANTE POR LU
-    /* async function getEstudiante() {
-        let lu = document.querySelector("#lu_d").value;
+    async function getEstudiante(){
+        const lu = document.querySelector("#lu_d").value;
         const url = `${base}estudiantes/${lu}`;
+        let estudiante = "";
+        let responseAlumno = document.querySelector("#response-alumno");
+
         try {
-            const response2 = await fetch(url, {
+            const response = await fetch(url, {
                 "method": 'GET',
                 "mode": 'no-cors'
-            }); 
-            const data = await response2.json();
-            console.log(data);
+            });
+            const data = await response.json();
             
+            estudiante += 
+                `<li class="student">
+                    <div class="name">
+                        <h2><b>${data.nombres} ${data.apellidos}</b></h2>
+                    </div>
+                    <div class="name">
+                        <p>LU: ${data.lu} Edad: ${data.edad} DNI: ${data.dni} Género: ${data.genero}</p>
+                    </div>
+                    
+                </li>`;
+            responseAlumno.innerHTML = estudiante;
         } catch (error) {
-            alert(error);
-            console.log(error)
+            responseAlumno.innerHTML = "Falló por" + error.message;
         }
-    } */
-
+    }
+/*     
     // D) DEVUELVE ESTUDIANTE POR LU
     const getEstudiante = () => {
         const lu = document.querySelector("#lu_d").value;
         const url = `${base}estudiantes/${lu}`;
+        let estudiante = "";
+        let responseAlumno = document.querySelector("#response-alumno");
         fetch(url)
             .then(response => response.json())
-            .then(data => alert(JSON.stringify(data))) //Remplazar función alert por data.ForEach para mostrar en vista
+            .then(data => {
+                estudiante += 
+            `<li class="student">
+                <div class="name">
+                    <h2><b>${data.nombres} ${data.apellidos}</b></h2>
+                </div>
+                <div class="name">
+                    <p>LU: ${data.lu} Edad: ${data.edad} DNI: ${data.dni} Género: ${data.genero}</p>
+                </div>
+                
+            </li>`;
+            responseAlumno.innerHTML = estudiante;
+            })
             .catch(error => alert(error.message)
         );
-    }
+    } */
     
     // E) LISTAR LOS ESTUDIANTES SEGÚN UN GÉNERO
     const getEstudiantesPorGenero = () => {
@@ -351,4 +378,3 @@ document.addEventListener("DOMContentLoaded", ()=> {
         });
             document.getElementById("response-reporte").innerHTML = text;
         });*/
-});
