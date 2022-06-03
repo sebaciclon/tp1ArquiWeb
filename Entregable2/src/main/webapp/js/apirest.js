@@ -56,7 +56,7 @@
         let lista = "";
         data.forEach(estudiante => {
             lista += 
-            `<li class="student">
+            `<li class="list-group-item">
                 <div class="name">
                     <h2><b>${estudiante.nombres} ${estudiante.apellidos}</b></h2>
                 </div>
@@ -79,7 +79,7 @@
             .then(response => response.json())
             .then(data => {
                 estudiante += 
-            `<li class="student">
+            `<li class="list-group-item">
                 <div class="name">
                     <h2><b>${data.nombres} ${data.apellidos}</b></h2>
                 </div>
@@ -97,20 +97,43 @@
     const getEstudiantesPorGenero = () => {
         const genero = document.querySelector("#genero_e").value;
         const url = `${base}estudiantes/genero/${genero}`;
+        let estudiantes = "";
+        let responseAlumnos = document.querySelector("#response-alumno-genero");
         fetch(url)
             .then(response => response.json())
-            .then(data => alert(JSON.stringify(data))) //Remplazar función alert por data.ForEach para mostrar en vista
+            .then(data => data.forEach(estudiante => {
+                estudiantes += 
+                `<li class="list-group-item">
+                    <div class="name">
+                        <h2><b>${estudiante.nombres} ${estudiante.apellidos}</b></h2>
+                    </div>
+                    <div class="name">
+                        <p>LU: ${estudiante.lu} Edad: ${estudiante.edad} DNI: ${estudiante.dni} Género: ${estudiante.genero}</p>
+                    </div>
+                    
+                </li>`;
+                responseAlumnos.innerHTML = estudiantes;
+            }))
             .catch(error => alert(error.message)
         );
     }
 
-    // F) LISTAR LOS ESTUDIANTES SEGÚN UN GÉNERO
+    // F) LISTAR LAS CARRERAS CON INSCRIPTOS
     const getCarrerasConInscriptos = () => {
         const url = `${base}carreras/inscriptos`;
+        let carreras = "";
+        let responseCarreras = document.querySelector("#response-carrera-con-alumnos");
         fetch(url)
             .then(response => response.json())
-            .then(data => alert(JSON.stringify(data))) //Remplazar función alert por data.ForEach para mostrar en vista
-            .catch(error => alert(error.message)
+            .then(data => data.forEach(carrera => {
+                carreras += 
+                `<li class="list-group-item">
+                    <div class="name">
+                        <h2><b>${carrera.nombre}</b></h2>
+                    </div>
+                </li>`;
+                responseCarreras.innerHTML = carreras;
+            })).catch(error => alert(error.message)
         );
     }
     
