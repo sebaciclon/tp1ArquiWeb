@@ -56,7 +56,7 @@
         let lista = "";
         data.forEach(estudiante => {
             lista += 
-            `<li class="list-group-item">
+            `<li class="list-group list-group-flush">
                 <div class="name">
                     <h2><b>${estudiante.nombres} ${estudiante.apellidos}</b></h2>
                 </div>
@@ -79,7 +79,7 @@
             .then(response => response.json())
             .then(data => {
                 estudiante += 
-            `<li class="list-group-item">
+            `<li class="list-group list-group-flush">
                 <div class="name">
                     <h2><b>${data.nombres} ${data.apellidos}</b></h2>
                 </div>
@@ -103,7 +103,7 @@
             .then(response => response.json())
             .then(data => data.forEach(estudiante => {
                 estudiantes += 
-                `<li class="list-group-item">
+                `<li class="list-group list-group-flush">
                     <div class="name">
                         <h2><b>${estudiante.nombres} ${estudiante.apellidos}</b></h2>
                     </div>
@@ -127,13 +127,14 @@
             .then(response => response.json())
             .then(data => data.forEach(carrera => {
                 carreras += 
-                `<li class="list-group-item">
+                `<li class="list-group list-group-flush">
                     <div class="name">
                         <h2><b>${carrera.nombre}</b></h2>
                     </div>
                 </li>`;
                 responseCarreras.innerHTML = carreras;
-            })).catch(error => alert(error.message)
+            }))
+            .catch(error => alert(error.message)
         );
     }
     
@@ -142,23 +143,50 @@
         const carrera = document.querySelector("#idCarrera2").value;
         const ciudad = document.querySelector("#ciudad2").value;
         const url = `${base}estudiantes/${carrera}/${ciudad}`;
+        let estudiantes = "";
+        let responseEstudiantes = document.querySelector("#response-alumno-por-carrera-ciudad");
         fetch(url)
             .then(response => response.json())
-            .then(data => alert(JSON.stringify(data))) //Remplazar función alert por data.ForEach para mostrar en vista
-            .catch(error => alert(error.message)
+            .then(data => data.forEach(estudiante => {
+                estudiantes += 
+                `<li class="list-group list-group-flush">
+                    <div class="name">
+                        <h2><b>${estudiante.nombres} ${estudiante.apellidos}</b></h2>
+                    </div>
+                    <div class="name">
+                        <p>LU: ${estudiante.lu} Ciudad: ${estudiante.ciudad}</p>
+                    </div>
+                    
+                </li>`;
+                responseEstudiantes.innerHTML = estudiantes;
+            })).catch(error => alert(error.message)
         );
     }
 
     // H) LISTAR CARRERAS CON INSCRIPTOS Y EGRESADOS POR AÑO
     const getCarrerasInscriptosYEgresados = () => {
         const url = `${base}carreras/reporteCarreras`;
+        let carreras = "";
+        let responseCarreras = document.querySelector("#response-reporte");
         fetch(url)
             .then(response => response.json())
-            .then(data => alert(JSON.stringify(data))) //Remplazar función alert por data.ForEach para mostrar en vista
+            .then(data => data.forEach(carrera => {
+                carreras += 
+                `<li class="list-group list-group-flush">
+                    <div class="name">
+                        <h2><b>${carrera.carrera.nombre}</b></h2>
+                    </div>
+                    <div class="name">
+                        <p><b>${carrera.carrera.estudiantes[0]}</b></p>
+                    </div>
+                </li>`;
+                responseCarreras.innerHTML = carreras;
+            }))
             .catch(error => alert(error.message)
         );
     }
 
+    
     document.querySelector("#btn_registrar").addEventListener("click", registrar);
     document.querySelector("#btn_matricular").addEventListener("click", matricular);
     document.querySelector("#btn_estudiantes").addEventListener("click", getEstudiantes);
