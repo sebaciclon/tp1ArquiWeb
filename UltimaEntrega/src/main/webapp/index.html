@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="css/style.css">
+        <title>TP3 | Arq. Web | Servicios REST y Jersey </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </head>
+    <body>
+        <header>
+            <div>Grupo 1 (Rauch) / Judit Meaca - Dolores Peña - Leonardo Esains - Mauricio Oruezabal - Sebastian Esains</div>
+        </header>
+         
+        <div class="container">
+
+            <!-- A) DAR DE ALTA UN ESTUDIANTE-->
+            
+            <div class="container_title">
+                <h1 class="title">Registro de estudiante</h1>
+            </div>
+            <div class="container_form">
+                <label class="label">
+                    <span>Número Libreta Universitaria</span>
+                    <input class="input" type="text" name="lu_a" id="lu_a" required>
+                </label>
+                <label class="label">
+                    <span>Nombres</span>
+                    <input class="input" type="text" name="nombres" id="nombres" required>
+                </label>
+                <label class="label">
+                    <span>Apellidos</span>
+                    <input class="input" type="text" name="apellidos" id="apellidos" required>
+                </label>
+                <label class="label">
+                    <span>Género</span>
+                    <select class="input" name="genero" id="genero_a">
+                        <option value=""></option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                    </select>
+                </label>
+                <label class="label">
+                    <span>Edad</span>
+                    <input class="input" type="number" name="edad" id="edad" required>
+                </label>
+                <label class="label">
+                    <span>DNI</span>
+                    <input class="input" type="number" name="dni" id="dni" required>
+                </label>
+                <label class="label">
+                    <span>Ciudad</span>
+                    <input class="input" type="text" name="ciudad" id="ciudad" required>
+                </label>
+                <button class="send_button" id="btn_registrar">Registrar</button>
+            </div>
+
+            <hr class="hr">
+
+            <!--B) MATRICULAR UN ESTUDIANTE EN UNA CARRERA-->
+            
+            <div class="container_title">
+                <h1 class="title">Matricular estudiante</h1>
+            </div>
+            <div class="container_form">
+                <label class="label">
+                    <span>Número Libreta Universitaria</span>
+                    <input class="input" type="text" name="lu_b" id="lu_b" required>
+                </label>
+                <label class="label">
+                    <span>Id de la carrera</span>
+                    <input class="input" type="text" name="idCarrera" id="idCarrera" required>
+                </label>
+                <button class="send_button" id="btn_matricular">Matricular</button>
+            </div>
+            
+            <hr class="hr">
+
+            <!--C) LISTAR TODOS LOS ESTUDIANTES. ORDENADO POR APELLIDO DE MENOR A MAYOR-->
+
+            <div class="container_title">
+                <h1 class="title">Lista de estudiantes</h1>
+            </div>
+            <div class="container_form">
+                <button type="reset" class="send_button" id="btn_estudiantes">Reporte</button>
+            </div>
+            <div class="container_list">
+                <ul class="list-group list-group-flush" id="estudiantes"></ul>
+            </div>
+           
+            <hr class="hr">
+        
+            <!--D) RECUPERAR UN ESTUDIANTE EN BASE A SU LU-->
+        	 
+            <div class="container_title">
+                <h1 class="title">Buscar estudiante por número de libreta universitaria</h1>
+            </div>
+            <div class="container_form">
+                <label class="label">
+                    <span>Número de Libreta Universitaria</span>
+                    <input class="input" type="text" name="lu_d" id="lu_d" required>
+                </label>
+                <button class="send_button" id="btn_buscar_d">Buscar</button>
+            </div>
+            <div class="container_list">
+                <ul class="list-group list-group-flush" id="response-alumno"></ul>
+            </div>
+            
+            <hr class="hr">
+
+            <!--E) RECUPERAR TODOS LOS ESTUDIANTES EN BASE A SU GENERO-->
+
+            <div class="container_title">
+                <h1 class="title">Buscar estudiantes por género</h1>
+            </div>
+            <div class="container_form">
+                <label class="label">
+                    <span>Género</span>
+                    <select class="input" name="genero" id="genero_e">
+                        <option value=""></option>
+                        <option value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                    </select>
+                </label>
+                <button class="send_button" id="btn_buscar_e">Buscar</button>
+            </div>
+            <div class="container_list">
+                <ul class="list-group list-group-flush" id="response-alumno-genero"></ul>
+            </div>
+
+            <hr class="hr">
+		
+            <!--F) RECUPERAR CARRERAS CON ESTUDIANTES INSCRIPTOS Y ORDENARLAS POR CANTIDAD DE INSCRIPTOS-->
+
+            <div class="container_title">
+                <h1 class="title">Carreras con estudiantes inscriptos ordenadas por matrícula</h1>
+            </div>
+            <div class="container_form">
+                <button class="send_button" id="btn_carreras">Reporte</button>
+            </div>
+            <div class="container_list">
+                <ul class="list-group list-group-flush" id="response-carrera-con-alumnos"></ul>
+            </div>
+            
+            <hr class="hr">
+
+            <!--G) RECUPERAR LOS ESTUDIANTES DE UNA CARRERA Y UNA CIUDAD DETERMINADA-->
+
+            <div class="container_title">
+                <h1 class="title">Buscar alumnos de una carrera y de una ciudad determinada</h1>
+            </div>
+            <div class="container_form">
+                <label class="label">
+                    <span>Id de la carrera</span>
+                    <input class="input" type="text" name="idCarrera2" id="idCarrera2" required>
+                </label>
+                <label class="label">
+                    <span>Ciudad</span>
+                    <input class="input" type="text" name="ciudad2" id="ciudad2" required>
+                </label>
+                <button class="send_button" id="btn_buscar_g">Buscar</button>
+            </div>
+            <div class="container_list">
+                <ul class="list-group list-group-flush" id="response-alumno-por-carrera-ciudad"></ul>
+            </div>
+            
+            <hr class="hr">
+		
+            <!--H) RECUPERAR REPORTE DE CARREARAS. CON CANTIDAD DE INSCRIPTOS Y EGRESADOS POR AÑO
+                    OREDENAR LAS CARRERAS ALFABETICAMENTE. PRESENTAR LOS AÑOS EN FORMA CRONOLOGICA-->
+
+            <div class="container_title">
+                <h1 class="title">Reporte de carreras</h1>
+            </div>
+            <div class="container_form">
+                <button class="send_button" id="btn_reporte">Reporte</button>
+            </div>
+            <div class="container_list">
+                <ul class="list-group list-group-flush" id="response-reporte"></ul>
+            </div>
+            
+            <hr class="hr">
+            
+        </div>
+        <script src="js/apirest.js"></script>
+    </body>
+</html>
